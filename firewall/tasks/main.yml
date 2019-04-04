@@ -1,2 +1,6 @@
----
-# tasks file for common
+# Install firewalld if not present
+- name: "Install firewalld"
+  yum:
+    name: "firewalld"
+    state: "present"
+
