@@ -1,7 +1,4 @@
-<<<<<<< HEAD
-
-=======
-  # installation d'apache 
+ # installation d'apache 
 - name: "apache installation"
   yum:
    name: "httpd"
@@ -15,5 +12,3 @@
    state: "started"
    enabled: yes
 
-   
->>>>>>> c2ad6e2eb5f0a5fcda84edef065d0e6fea3ea535
