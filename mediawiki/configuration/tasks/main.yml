@@ -1,2 +1,43 @@
 ---
 # tasks file for configuration
+
+
+#---------------------------------------------------#
+#Creation du répertoire mediawiki avec l'user apache#
+#---------------------------------------------------#
+- name: "mediawiki directory"
+  file: 
+   path: "{{mediawiki_directory}}"
+   owner: "apache"
+   group: "apache"
+   state: director
+
+
+#-------------------------------------#
+#Décompression du répertoire mediawiki#
+#-------------------------------------#
+- name: "uncompress mediawiki archive"
+  unarchive: 
+   src: "{{mediawiki_archive_url}}"
+   dest: "{{mediawiki_directory}}"
+   owner: "apache"
+   group: "apache"
+   remote_src: yes 
+   # removemediawiki-1.xx.x/ from path 
+   extra_opts: --transform=s/^mediawiki-[0-9\.]*\///
+   
+ 
+#-------------------------------------#
+#Configuration du répertoire mediawiki#
+#-------------------------------------# 
+- name: "mediawiki configuration"
+  become: yes 
+  become_user: "apache"
+  command: 
+   php install.php --scriptpath /{{mediawiki_name}} 
+    --dbnamemediawiki --langfr 
+    --dbuser {{mediawiki_db_user}} 
+    --dbpass {{mediawiki_db_password}} 
+    --pass {{mediawiki_admin_password}} 
+    --dbserver {{mediawiki_db_host}} 
+    {{mediawiki_title}} {{mediawiki_admin_user}}
