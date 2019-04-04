@@ -1,0 +1,21 @@
+# Install firewalld if not present
+- name: "Install firewalld"
+  yum:
+    name: "firewalld"
+    state: "present"
+
+# Start and enable firewalld 
+- name: "Start and enable firewalld"
+  service:
+    name: "firewalld"
+    enabled: "yes"
+    state: "started"
+
+# Allow http traffics  and reload firewalld
+- name: "Allow http trafics and reload firewalld"
+  firewalld:
+    service: "http" 
+    zone: "public"
+    permanent: "true"
+    state: "enabled"
+
