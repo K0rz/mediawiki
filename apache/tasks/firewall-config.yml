@@ -1,0 +1,5 @@
+- name: "Install firewald"
+  yum:
+    name: "firewalld"
+    state: "present"
+
