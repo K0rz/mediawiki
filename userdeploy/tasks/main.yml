@@ -1,21 +1,39 @@
-# Install firewalld if not present
-- name: "Install firewalld"
-  yum:
-    name: "firewalld"
+# Create groups
+- name: "Create user groups."
+  group:
+    name: "{{ item }}"
     state: "present"
+  with_items: "{{ user_groups }}"
 
-# Start and enable firewalld 
-- name: "Start and enable firewalld"
-  service:
-    name: "firewalld"
-    enabled: "yes"
-    state: "started"
+# Create users account and attach and their own group list.
+- name: "Create user accounts."
+  user:
+    name: "{{ item.name }}"
+    groups: "{{ item.groups }}"
+    comment: "{{ item.comment }}"
+  with_items: "{{ users }}"
 
-# Allow http traffics  and reload firewalld
-- name: "Allow http trafics and reload firewalld"
-  firewalld:
-    service: "http" 
-    zone: "public"
-    permanent: "true"
-    state: "enabled"
+# Check if user is in sudoers, return 0 -> false and 1 -> true.
+- name: "Check if user is already sudo without password"
+  shell: 'grep "^{{ username }}" /etc/sudoers -c || true'
+  register: grep_deploy_sudoers
 
+# Allow user to run command sudo without a password
+- name: "Allow user deploy to sudo without a password."
+  lineinfile:
+    dest: "/etc/sudoers"
+    state: "present"
+    insertafter : "^root"
+    line: "{{ username }}\t ALL=(ALL)\t NOPASSWD: ALL"
+  when: grep_deploy_sudoers.stdout == "0"
+
+ # - name: "Disable Root Login"
+ #  lineinfile:
+ #    dest: "/etc/ssh/sshd_config"
+ #    regexp: "^PermitRootLogin"
+ #    line: "PermitRootLogin no"
+ #    state: "present"
+ #    backup: "yes"
+ #  notify:
+ #    - restart ssh
+ 
