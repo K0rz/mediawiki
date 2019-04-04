@@ -35,9 +35,13 @@
   become_user: "apache"
   command: 
    php {{mediawiki_maintenance_directory}}install.php --scriptpath /{{mediawiki_name}} 
-    --dbname mediawiki --langfr 
+    --dbname mediawiki --lang fr 
     --dbuser {{mediawiki_db_user}} 
     --dbpass {{mediawiki_db_password}} 
     --pass {{mediawiki_admin_password}} 
     --dbserver {{mediawiki_db_host}} 
     {{mediawiki_title}} {{mediawiki_admin_user}}
+    
+  args:
+   creates: "{{ mediawiki_directory }}/LocalSettings.php"
+   chdir: "{{mediawiki_maintenance_directory }}"
