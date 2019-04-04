@@ -1,2 +1,19 @@
 ---
 # defaults file for configuration
+
+#-----------------------------------------------#
+#Fichier de configuration avec : administrateur #
+#Avec le nom du wiki et ka base de données local#
+#Récupération de l'archive                      #
+#-----------------------------------------------#
+
+# default media wiki administrator 
+mediawiki_admin_user:     "admin"
+mediawiki_admin_password: "@adm1n"
+
+mediawiki_name: "mediawiki"
+mediawiki_title: "Fantastics"
+
+# default database host: first machine from group mysql 
+mediawiki_db_host: "{{groups.mysql.0}}"
+mediawiki_archive_url: "https://releases.wikimedia.org/mediawiki/1.28/mediawiki-1.28.0.tar.gz"
