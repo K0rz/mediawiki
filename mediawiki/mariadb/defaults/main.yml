@@ -1,6 +1,10 @@
 ---
 # defaults file for mariadb
 
+#---------------------------------------------------
+#Utilisation de la database avec les variables user#
+#---------------------------------------------------
+
 # Defaultschema 
 mediawiki_db_name: "mediawiki"
 # Defaultuser for mediawiki 

@@ -1,10 +1,24 @@
 ---
 # tasks file for mariadb
 
+
+#----------------------#
+#Gestion de la Database#
+#Schéma de la db       #
+#----------------------#
+
+
+#---------------------------#
+#Création de la db mediawiki#
+#---------------------------#
 - name: "mediawiki database"
   mysql_db: 
    name: "{{mediawiki_db_name}}"
    state: present
+
+#--------------------------------#
+#Création de l'user et des droits#
+#--------------------------------#   
    
 - name: "mediawiki user+privileges"
   mysql_user: 
