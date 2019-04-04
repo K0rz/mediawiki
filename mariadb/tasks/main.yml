@@ -1,10 +1,13 @@
 ---
 # tasks file for mariadb
 #
+#installation mariadb
 - name: "mariadb-server installation"
   yum:
+   # installation mariadb + python
    name: "mariadb-server,MySQL-python"
    state: "installed"
+# start service mariadb
 - name: "start mariadb service"
   service:
    name: "mariadb"
