@@ -1,0 +1,13 @@
+# Default user 
+username: "deploy"
+
+# Vars file for users
+user_groups: "{{ username  }}"
+
+# Liste des utilisateurs à créer.
+users:
+   - name: "{{ username }}"
+     comment: "Ansible Deploy"
+     groups: "{{ username }}"
+     shell: "/bin/bash"
+

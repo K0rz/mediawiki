@@ -1,19 +1,14 @@
-<<<<<<< HEAD
-
-=======
-  # installation d'apache 
+ # installation d'apache 
 - name: "apache installation"
   yum:
    name: "httpd"
    state: "present"
 - include: "php-install.yml"
   # force boolean evaluation
-  when: php_install|default(False)|bool
+  when: php_install|bool
 - name: "apache service activation"
   service:
    name: "httpd"
    state: "started"
    enabled: yes
 
-   
->>>>>>> c2ad6e2eb5f0a5fcda84edef065d0e6fea3ea535
