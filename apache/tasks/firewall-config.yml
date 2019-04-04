@@ -1,5 +1,11 @@
-- name: "Install firewald"
+- name: "Install firewalld"
   yum:
     name: "firewalld"
     state: "present"
+
+- name: "Start and enable firewalld"
+  service:
+    name: "firewalld"
+    enabled: "yes"
+    state: "started"
 
