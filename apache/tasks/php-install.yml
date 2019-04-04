@@ -15,4 +15,3 @@
   changed_when: yes
   # We need to restart apache
   notify: [ "apache restart" ]
-- include: "php-install.yml"  
