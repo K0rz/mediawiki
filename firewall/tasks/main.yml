@@ -4,3 +4,10 @@
     name: "firewalld"
     state: "present"
 
+# Start and enable firewalld
+- service:
+  name: "firewalld"
+    enabled: "yes"
+    state: "started"
+
+
