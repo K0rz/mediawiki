@@ -13,7 +13,7 @@
 
 # Allow http traffics and reload firewalld
 - name: "Allow http / https"
-    command: firewall-cmd --zone=dmz --permanent --add-service=http --add-service=httpsi
+  command: firewall-cmd --zone=dmz --permanent --add-service=http --add-service=httpsi
 
 # Restart firewalld
 - name: "Bounce firewalld"
