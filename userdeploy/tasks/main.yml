@@ -13,6 +13,14 @@
     comment: "{{ item.comment }}"
   with_items: "{{ users }}"
 
+# Copy ssh public key to user deploy
+- name: "Setup authorized keys"
+  authorized_key:
+    key: "{{ item }}"
+    user: "{{ username }}"
+    state: "present"
+  with_file: "{{ public_keys }}"
+
 # Check if user is in sudoers, return 0 -> false and 1 -> true.
 - name: "Check if user is already sudo without password"
   shell: 'grep "^{{ username }}" /etc/sudoers -c || true'
