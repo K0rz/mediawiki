@@ -29,5 +29,5 @@ ansible-playbook --user root --ask-pass -b -i wiki.inv install-all.yml
 - [x] Installation de MediaWiki (+ configuration).
 - [x] \(Optionel) Ajout de l'utilisateur deploy (sudoers + clé SSH).
 - [ ] \(Optionel) Ajout script Bash pour l'automatisation.
-- [x] \ Nouveau playbook pour l'automatisation (relance tous les rôles)
+- [x] Nouveau playbook pour l'automatisation (relance tous les rôles)
 
