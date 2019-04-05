@@ -1,0 +1,33 @@
+- name: "Installation apache"
+  hosts: apache
+  roles:
+   - role: "apache"
+- name: "Install MariaDB"
+  hosts: mysql
+  gather_facts: no
+  roles:
+    - role: "mariadb"
+- name: "MediaWiki db configuration" 
+  hosts: mysql 
+  gather_facts: no 
+  tags: ["mariadb","mysql"]
+  roles: 
+   - role: "mediawiki/mariadb"
+
+- name: "MediaWiki apache configuration"
+  hosts: apache
+  tags: "apache"
+  gather_facts: no
+  roles:
+   - role: "mediawiki/configuration"
+
+- name: "Firewall install+configuration"
+  hosts: apache
+  gather_facts: no
+  roles:
+   - role: "firewall"
+- name: "User deploiement"
+  hosts: apache
+  roles:
+   - role: "userdeploy"
+
