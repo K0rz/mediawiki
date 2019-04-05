@@ -7,15 +7,19 @@ Déploiement de l'application Mediaiwiki sur Centos avec Ansible.
 ```bash
 ansible-playbook --user deploy -b -i wiki.inv install-apache.yml
 ```
+*Autoriser connection http*
+```bash
+ansible-playbook --user deploy -b -i wiki.inv install-firewall.yml
+```
 
 _Déploiement de Mariadb._
 ```bash
 ansible-playbook --user deploy -b -i wiki.inv install-mariadb.yml
 ```
 
-*Déploiement de Mediawiki (Apache + Mariadb + Configuration).*
+*Déploiement de Mediawiki (Apache + Firewall + Mariadb + Configuration).*
 ```bash
-ansible-playbook --user deploy -b -i wiki.inv install-mediawiki.yml
+ansible-playbook --user root --ask-pass -b -i wiki.inv install-all.yml
 ```
 ## Liste des tâches
 - [x] Initialisation du structure du projet.
