@@ -1,33 +1,50 @@
+#### Playbook installation mediawiki 
+#
+# création user avec droits
+- name: "User deploiement"
+  hosts: apache
+  roles:
+   - role: "userdeploy"
+#
+# Update et upgrade du system
+- name: "Update & upgrade"
+  hosts: apache,mysql
+  roles: 
+   - role: "update"
+#
+# installation apache et php
 - name: "Installation apache"
   hosts: apache
   roles:
    - role: "apache"
+#
+# installation firewall et config
+- name: "Firewall install+configuration"
+  hosts: apache
+  gather_facts: no
+  roles:
+   - role: "firewall"
+#
+# installation database 
 - name: "Install MariaDB"
   hosts: mysql
   gather_facts: no
   roles:
     - role: "mariadb"
+#
+# Config du mediawiki sur la database
 - name: "MediaWiki db configuration" 
   hosts: mysql 
   gather_facts: no 
   tags: ["mariadb","mysql"]
   roles: 
    - role: "mediawiki/mariadb"
-
+#
+# Config du mediawiki sur apache 
 - name: "MediaWiki apache configuration"
   hosts: apache
   tags: "apache"
   gather_facts: no
   roles:
    - role: "mediawiki/configuration"
-
-- name: "Firewall install+configuration"
-  hosts: apache
-  gather_facts: no
-  roles:
-   - role: "firewall"
-- name: "User deploiement"
-  hosts: apache
-  roles:
-   - role: "userdeploy"
 
