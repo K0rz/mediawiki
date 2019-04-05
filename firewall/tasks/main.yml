@@ -11,11 +11,12 @@
     enabled: "yes"
     state: "started"
 
-# Allow http traffics  and reload firewalld
-- name: "Allow http trafics and reload firewalld"
-  firewalld:
-    service: "http" 
-    zone: "public"
-    permanent: "true"
-    state: "enabled"
+# Allow http traffics and reload firewalld
+- name: "Allow http / https"
+    command: firewall-cmd --zone=dmz --permanent --add-service=http --add-service=httpsi
 
+# Restart firewalld
+- name: "Bounce firewalld"
+  service:
+    name: "firewalld"
+    state: "restarted"
