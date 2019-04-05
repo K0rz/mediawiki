@@ -1,0 +1,4 @@
+- name: "Mise à jour du source.list"
+  yum: 
+   name: "*"
+   state: latest
