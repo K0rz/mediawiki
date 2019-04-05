@@ -22,7 +22,8 @@ ansible-playbook --user deploy -b -i wiki.inv install-mediawiki.yml
 - [x] Installation d'Apache + PHP (Mise à jour).
 - [x] Installation et configuration du Firewall.
 - [x] Installation de MariaDB.
-- [ ] Installation de MediaWiki (+ configuration).
-- [ ] \(Optionel) Ajout de l'utilisateur deploy (sudoers + clé SSH).
+- [x] Installation de MediaWiki (+ configuration).
+- [x] \(Optionel) Ajout de l'utilisateur deploy (sudoers + clé SSH).
 - [ ] \(Optionel) Ajout script Bash pour l'automatisation.
+- [x] \ Nouveau playbook pour l'automatisation (relance tous les rôles)
 
