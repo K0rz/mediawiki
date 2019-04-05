@@ -11,3 +11,6 @@ users:
      groups: "{{ username }}"
      shell: "/bin/bash"
 
+public_keys:
+  - ~/.ssh/id_rsa.pub
+
